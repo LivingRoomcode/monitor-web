@@ -45,3 +45,8 @@ monitor-web/
 └── vite.config.ts          // Vite配置
 ```
 监控系统数据显示台
+![数据平台首页](images/首页.png)
+![性能数据图表](images/性能数据图表.png)
+![原始监控数据](images/原始监控数据.png)
+![白屏监控数据](images/白屏监控数据.png)
+

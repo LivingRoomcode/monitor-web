@@ -190,17 +190,52 @@ const Mychart = React.memo(() => {
     if (pvChartRef.current && pvData.length > 0 && dateLabels.length > 0) {
       const myChart = echarts.init(pvChartRef.current);
       const option = {
+        tooltip: {
+          trigger: 'axis',
+          backgroundColor: 'rgba(255,255,255,0.95)',
+          borderColor: '#3498db',
+          textStyle: {
+            color: '#2c3e50'
+          }
+        },
         xAxis: {
           type: 'category',
-          data: dateLabels,
+          axisLine: {
+            lineStyle: {
+              color: '#7f8c8d'
+            }
+          }
         },
         yAxis: {
           type: 'value',
+          axisLine: {
+            show: false
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#ecf0f1'
+            }
+          }
         },
         series: [{
           data: pvData,
           type: 'line',
-        }],
+          smooth: true,
+          lineStyle: {
+            width: 3,
+            color: '#3498db'
+          },
+          itemStyle: {
+            color: '#3498db',
+            borderWidth: 2
+          },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: 'rgba(52, 152, 219, 0.3)' },
+              { offset: 1, color: 'rgba(52, 152, 219, 0)' }
+            ])
+          }
+        }]
       };
       myChart.setOption(option);
 
@@ -296,10 +331,11 @@ const Mychart = React.memo(() => {
       {/* 绘制总 PV 的折线图 */}
       <div ref={pvChartRef} style={{ width: '100%', height: '400px' }}></div>
 
-      <div className={'filters'} ref={chartRef}  />
+      {/* <div className={'filters'} ref={chartRef}  /> */}
       <h2>Top3 入口页面</h2>
       {renderTable()}
-      <Space style={{ marginBottom: 16 }}>
+        <h2>数据筛选</h2>
+      <Space className="spaced-selectors">
         <RangePicker
           onChange={handleDateRangeChange}
           format="YYYY/MM/DD"

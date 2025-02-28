@@ -1,158 +1,190 @@
+// 更新颜色变量（更现代的数据看板风格）
+$global-font-family: 'Inter', sans-serif; // 更现代的字体
+$global-text-color: #2c3e50;
+$heading-font-family: 'Poppins', sans-serif;
+$heading-color: #34495e;
+$heading-font-size: 2.4rem;
+$table-header-font-family: 'Roboto', sans-serif;
+$table-header-color: #ffffff;
+$table-header-bg: #3498db;
+$table-cell-color: #4a4a4a;
+$countdown-bg: rgba(52, 152, 219, 0.1);
+$countdown-border: #3498db;
+
+// 新增变量用于修改表格和 displayText 的样式
+$table-header-font-size: 1.2rem; // 表格表头字体大小
+$table-cell-font-size: 1rem; // 表格单元格字体大小
+$table-header-new-color: #ffffff; // 表格表头新颜色
+$table-cell-new-color: #333333; // 表格单元格新颜色
+$display-text-font-size: 1.1rem; // displayText 字体大小
+$display-text-color: #3498db; // displayText 颜色
+
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 10px;
-    background: #b3b9cc;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    // margin: 2rem auto;
+    // padding: 2rem;
+    // text-align: center;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 
     h2 {
-        color: #2c3e50;
-        border-bottom: 2px solid #3498db;
-        padding-bottom: 8px;
-        margin-bottom: 24px;
-        font-size: 1.8rem;
-    }
+        color: $heading-color;
+        border-bottom: none;
+        position: relative;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
 
-    .filters {
-        margin: 24px 0;
-        background: #f8f9fa;
-        padding: 16px;
-        border-radius: 8px;
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-
-        .ant-picker,
-        .ant-select,
-        button {
-            flex: 1 1 auto;
-            max-width: 200px;
-        }
-
-        .ant-select-selector,
-        .ant-picker {
-            border: 1px solid #3498db !important;
-            border-radius: 4px !important;
-        }
-
-        button {
-            background-color: #3498db;
-            border-color: #3498db;
-            transition: all 0.3s ease;
-
-            &:hover {
-                background-color: #2980b9;
-                transform: translateY(-1px);
-                box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-            }
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
         }
     }
+
+    // .filters {
+    //     background: white;
+    //     padding: 1.5rem;
+    //     border-radius: 8px;
+    //     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    //     // 添加以下样式让子元素水平居中
+    //     display: flex;
+    //     justify-content: center;
+    //     flex-wrap: wrap;
+
+    //     .ant-picker,
+    //     .ant-select-selector {
+    //         // margin: 0 auto;
+    //         border-radius: 60x !important;
+    //         border: 1px solid #e0e0e0 !important;
+    //         transition: all 0.3s ease;
+
+    //         &:hover {
+    //             border-color: #3498db !important;
+    //         }
+    //     }
+
+    //     button {
+    //         background: linear-gradient(135deg, #3498db, #2980b9);
+    //         border: none;
+    //         border-radius: 6px;
+    //         height: 40px;
+
+    //         &:hover {
+    //             transform: translateY(-2px);
+    //             box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    //         }
+    //     }
+    // }
 
     table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 24px 0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
-        th,
-        td {
-            padding: 12px 15px;
-            text-align: center;
-            border-bottom: 1px solid #ecf0f1;
-        }
+        width: 60%;
+        margin: 0 auto;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 
         th {
-            background-color: #3498db;
-            color: white;
+            background: $table-header-bg;
+            padding: 1rem;
             font-weight: 600;
-        }
-
-        tr {
-            transition: background-color 0.2s ease;
-
-            &:nth-child(even) {
-                background-color: #f8f9fa;
-            }
-
-            &:hover {
-                background-color: #ecf0f1;
-            }
+            letter-spacing: 0.5px;
+            font-family: $table-header-font-family;
+            font-size: $table-header-font-size; // 修改表格表头字体大小
+            color: $table-header-new-color; // 修改表格表头颜色
         }
 
         td {
-            color: #2c3e50;
+            padding: 0.8rem;
+            text-align: center;
+            transition: background 0.2s ease;
+            font-size: $table-cell-font-size; // 修改表格单元格字体大小
+            color: $table-cell-new-color; // 修改表格单元格颜色
 
             &:nth-child(2),
             &:nth-child(3) {
-                text-align: right;
-                font-family: monospace;
+                font-family: $global-font-family;
+                font-weight: 500;
             }
+        }
+
+        tr:hover {
+            background: rgba(52, 152, 219, 0.05);
         }
     }
 
     .countdown {
-        margin-top: 24px;
-        padding: 16px;
-        background: #fff9e6;
-        border-radius: 4px;
-        border-left: 4px solid #ffe58f;
+        background: $countdown-bg;
+        border-left: 4px solid $countdown-border;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-top: 2rem;
 
         p {
-            margin: 0;
-            color: #595959;
-            line-height: 1.6;
+            color: darken($countdown-border, 15%);
+            font-weight: 500;
 
             span {
-                font-weight: bold;
-                color: #f5222d;
+                font-size: 1.1em;
+                animation: pulse 1.5s infinite;
             }
         }
     }
 
-    // 响应式设计
+// 修改 .spaced-selectors 的样式
+.spaced-selectors {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 24px 0;
+
+    // 统一子元素样式
+    .ant-picker,
+    .ant-select,
+    .ant-btn {
+        margin: 0 4px;
+        flex: 0 1 auto;
+    }
+
+    // 针对小屏幕优化
     @media (max-width: 768px) {
-        padding: 16px;
+        padding: 0 16px;
 
-        .filters {
-            flex-direction: column;
-
-            .ant-picker,
-            .ant-select,
-            button {
-                max-width: 100%;
-            }
+        .ant-picker,
+        .ant-select {
+            width: 100% !important;
+            max-width: 300px;
         }
 
-        table {
-            display: block;
-            overflow-x: auto;
-            white-space: nowrap;
-
-            th,
-            td {
-                min-width: 120px;
-            }
-        }
-
-        h2 {
-            font-size: 1.5rem;
+        .ant-btn {
+            width: 100%;
+            max-width: 200px;
         }
     }
+}
 
-    @media (max-width: 480px) {
-        table {
+    // 修改 displayText 对应的 p 标签样式
+    p:has(+ .countdown) {
+        text-align: center;
+        font-size: $display-text-font-size;
+        color: $display-text-color;
+    }
+}
 
-            th,
-            td {
-                padding: 8px;
-                font-size: 0.9rem;
-            }
-        }
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
 
-        .countdown {
-            font-size: 0.9rem;
-        }
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
