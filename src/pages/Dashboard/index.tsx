@@ -224,6 +224,7 @@ const PerformanceDashboard = () => {
         <Tabs.TabPane tab="原始数据" key="2">
           <Table
             columns={columns}
+            //数据来源
             dataSource={data}
             pagination={{ pageSize: 10 }}
             rowKey="timestamp"
